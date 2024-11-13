@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 import stringcalculator.StringCalculator
 
 class StringCalculatorTest {
@@ -44,6 +45,14 @@ class StringCalculatorTest {
     fun `0으로 나누면 에러가 난다`() {
         assertThrows(IllegalArgumentException::class.java) {
             calculator.calculate("1 / 0")
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1 +", "1 2", "1 + +", "1 + 2 *", "1 x 3"])
+    fun `잘못된 입력이 들어오면 에러가 난다`(input: String) {
+        assertThrows(IllegalArgumentException::class.java) {
+            calculator.calculate(input)
         }
     }
 }

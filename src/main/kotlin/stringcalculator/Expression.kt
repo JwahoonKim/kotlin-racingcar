@@ -1,10 +1,50 @@
 package stringcalculator
 
 class Expression(input: String) {
-    private val expression = input.split(" ").toMutableList()
+    private val expression = input.split(DELIMITER).toMutableList()
+
+    init {
+        validateInput(input)
+    }
+
+    private fun validateInput(input: String) {
+        validateBlank(input)
+        validateSizeOfInput()
+        validateOperandsAndOperatorsOrder()
+    }
+
+    private fun validateSizeOfInput() {
+        if (expression.size.isEven()) {
+            throw IllegalArgumentException(INVALID_INPUT_ERROR_MESSAGE)
+        }
+    }
+
+    private fun validateBlank(input: String) {
+        if (input.isBlank()) {
+            throw IllegalArgumentException(INVALID_INPUT_ERROR_MESSAGE)
+        }
+    }
+
+    private fun validateOperandsAndOperatorsOrder() {
+        expression.forEachIndexed { index, value ->
+            validateOperandOrder(index, value)
+            validateOperatorOrder(index, value)
+        }
+    }
+
+    private fun validateOperatorOrder(index: Int, value: String) {
+        if (index.isOdd() && Operator.fromSymbol(value) == null) {
+            throw IllegalArgumentException(INVALID_INPUT_ERROR_MESSAGE)
+        }
+    }
+
+    private fun validateOperandOrder(index: Int, value: String) {
+        if (index.isEven() && value.toIntOrNull() == null) {
+            throw IllegalArgumentException(INVALID_INPUT_ERROR_MESSAGE)
+        }
+    }
 
     fun getOperandAndOperator(): OperandAndOperator {
-        checkEnoughExpression()
         val num1 = getNextNumber()
         val operator = getNextOperator()
         val num2 = getNextNumber()
@@ -15,17 +55,11 @@ class Expression(input: String) {
         )
     }
 
-    private fun checkEnoughExpression() {
-        if (expression.size < 3) {
-            throw IllegalArgumentException("입력 값이 올바르지 않습니다.")
-        }
-    }
-
-    fun getNextNumber(): Int {
+    private fun getNextNumber(): Int {
         return expression.removeFirst().toInt()
     }
 
-    fun getNextOperator(): String {
+    private fun getNextOperator(): String {
         return expression.removeFirst()
     }
 
@@ -48,9 +82,17 @@ class Expression(input: String) {
         }
     }
 
+    companion object {
+        private const val DELIMITER = " "
+        private const val INVALID_INPUT_ERROR_MESSAGE = "입력 값이 올바르지 않습니다."
+    }
+
     data class OperandAndOperator(
         val operand1: Int,
         val operand2: Int,
         val operator: String,
     )
 }
+
+private fun Int.isEven(): Boolean = this % 2 == 0
+private fun Int.isOdd(): Boolean = this % 2 == 1
