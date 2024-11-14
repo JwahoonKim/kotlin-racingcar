@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.ui
+
+import racingcar.domain.Car
+import racingcar.domain.Cars
 
 object ResultView {
 
@@ -7,7 +10,7 @@ object ResultView {
     }
 
     fun printState(cars: Cars) {
-        cars.forEach(::printPosition)
+        cars.forEach(ResultView::printPosition)
         println()
     }
 
