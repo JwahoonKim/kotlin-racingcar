@@ -9,8 +9,9 @@ class Cars(
     }
 
     companion object {
-        fun from(numberOfCars: Int): Cars {
-            return Cars(List(numberOfCars) { Car() })
+        fun from(carNames: List<String>): Cars {
+            val cars = carNames.map { Car(name = it) }
+            return Cars(cars)
         }
     }
 }
