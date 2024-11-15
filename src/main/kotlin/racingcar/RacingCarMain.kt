@@ -13,4 +13,5 @@ fun main() {
         cars.move()
         ResultView.printState(cars)
     }
+    ResultView.printWinners(cars)
 }

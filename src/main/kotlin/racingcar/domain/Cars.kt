@@ -8,6 +8,12 @@ class Cars(
         cars.forEach(Car::move)
     }
 
+    fun getWinners(): List<String> {
+        val maxPosition = cars.maxOf(Car::position)
+        return cars.filter { it.position == maxPosition }
+            .map(Car::name)
+    }
+
     companion object {
         fun from(carNames: List<String>): Cars {
             val cars = carNames.map { Car(name = it) }
