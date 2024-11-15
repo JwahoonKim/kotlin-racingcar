@@ -15,6 +15,7 @@ object ResultView {
     }
 
     private fun printPosition(car: Car) {
-        "-".repeat(car.position).also { println(it) }
+        val position = "-".repeat(car.position)
+        println("${car.name} : $position")
     }
 }
