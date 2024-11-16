@@ -5,7 +5,7 @@ import racingcar.ui.InputView
 import racingcar.ui.ResultView
 
 fun main() {
-    val (_, carNames, numberOfAttempts) = InputView.getUserInput()
+    val (carNames, numberOfAttempts) = InputView.getUserInput()
     val cars = Cars.from(carNames)
 
     ResultView.printStartMessage()

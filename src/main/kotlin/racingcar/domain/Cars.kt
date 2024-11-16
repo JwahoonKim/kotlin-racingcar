@@ -9,15 +9,15 @@ class Cars(
     }
 
     fun getWinners(): List<String> {
-        val maxPosition = cars.maxOf(Car::position)
-        return cars.filter { it.position == maxPosition }
-            .map(Car::name)
+        val winnerCar = cars.maxOrNull() ?: return emptyList()
+        return cars.filter { it >= winnerCar } // compareTo 메서드를 활용하기 위해 부등호 비교 처리
+            .map { it.name }
     }
 
     companion object {
         fun from(carNames: List<String>): Cars {
-            val cars = carNames.map { Car(name = it) }
-            return Cars(cars)
+            return carNames.map { Car(name = it) }
+                .let(::Cars)
         }
     }
 }

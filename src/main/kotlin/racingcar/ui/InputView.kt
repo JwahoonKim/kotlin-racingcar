@@ -2,11 +2,9 @@ package racingcar.ui
 
 object InputView {
     fun getUserInput(): Input {
-        val numberOfCars = getNumberOfCars()
-        val carNames = getCarNames(numberOfCars)
+        val carNames = getCarNames()
         val numberOfAttempts = getNUmberOfAttempts()
         return Input(
-            numberOfCars = numberOfCars,
             carNames = carNames,
             numberOfAttempts = numberOfAttempts,
         )
@@ -18,10 +16,9 @@ object InputView {
         return numberOfAttempts
     }
 
-    private fun getCarNames(numberOfCars: Int): List<String> {
+    private fun getCarNames(): List<String> {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         val carNames = readln().split(",")
-        validateCarNameSize(carNames, numberOfCars)
         return carNames
     }
 
@@ -39,7 +36,6 @@ object InputView {
 }
 
 data class Input(
-    val numberOfCars: Int,
     val carNames: List<String>,
     val numberOfAttempts: Int,
 )
