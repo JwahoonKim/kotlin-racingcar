@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.domain.Car
 import racingcar.domain.Cars
+import racingcar.domain.PositionHistory
 
 class CarsTest {
 
@@ -12,11 +13,11 @@ class CarsTest {
         // given
         val cars = Cars(
             listOf(
-                Car("a", 1),
-                Car("b", 2),
-                Car("c", 3),
-                Car("d", 2),
-                Car("e", 3),
+                Car(name = "a", PositionHistory.initPositionHistory(3)),
+                Car(name = "b", PositionHistory.initPositionHistory(4)),
+                Car(name = "c", PositionHistory.initPositionHistory(5)),
+                Car(name = "d", PositionHistory.initPositionHistory(4)),
+                Car(name = "e", PositionHistory.initPositionHistory(5)),
             ),
         )
 

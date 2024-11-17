@@ -3,6 +3,7 @@ package racingcar
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.domain.Car
+import racingcar.domain.Position
 import racingcar.movestrategy.FixMoveStrategy
 
 class CarTest {
@@ -14,7 +15,7 @@ class CarTest {
             moveStrategy = FixMoveStrategy(4),
         )
         car.move()
-        assertThat(car.position).isEqualTo(1)
+        assertThat(car.getCurrentPosition()).isEqualTo(Position(1))
     }
 
     @Test
@@ -24,6 +25,6 @@ class CarTest {
             moveStrategy = FixMoveStrategy(3),
         )
         car.move()
-        assertThat(car.position).isEqualTo(0)
+        assertThat(car.getCurrentPosition()).isEqualTo(Position(0))
     }
 }
