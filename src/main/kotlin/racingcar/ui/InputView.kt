@@ -1,6 +1,6 @@
 package racingcar.ui
 
-import racingcar.service.RacingCarService
+import racingcar.service.dto.Input
 
 object InputView {
     fun getUserRequest(): Request {
@@ -29,8 +29,8 @@ data class Request(
     val carNames: List<String>,
     val numberOfAttempts: Int,
 ) {
-    fun toInput(): RacingCarService.Input {
-        return RacingCarService.Input(
+    fun toInput(): Input {
+        return Input(
             carNames = carNames,
             numberOfAttempts = numberOfAttempts,
         )

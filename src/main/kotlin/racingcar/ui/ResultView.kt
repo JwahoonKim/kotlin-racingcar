@@ -1,13 +1,13 @@
 package racingcar.ui
 
 import racingcar.domain.Cars
-import racingcar.service.RacingCarService
+import racingcar.service.dto.Output
 
 object ResultView {
 
-    fun printResult(output: RacingCarService.Output) {
+    fun printResult(output: Output) {
         printStartMessage()
-        printStates(output)
+        printHistory(output)
         printWinners(output.cars)
     }
 
@@ -15,20 +15,16 @@ object ResultView {
         println("실행 결과")
     }
 
-    private fun printStates(output: RacingCarService.Output) {
-        for (i in 1..output.numberOfAttempts) {
-            printState(cars = output.cars, round = i)
-            println()
-        }
-    }
-
-    private fun printState(cars: Cars, round: Int) {
+    private fun printHistory(output: Output) {
+        val racingHistory = output.racingHistory
         val result = StringBuilder()
-        cars.forEach { car ->
-            val position = "-".repeat(car.getPositionOf(round).value)
-            result.append("${car.name} : $position\n")
+        racingHistory.forEach { history ->
+            history.forEach { (carName, position) ->
+                result.append("$carName : ${"-".repeat(position)}\n")
+            }
+            result.append("\n")
         }
-        print(result.toString())
+        println(result.toString())
     }
 
     private fun printWinners(cars: Cars) {
