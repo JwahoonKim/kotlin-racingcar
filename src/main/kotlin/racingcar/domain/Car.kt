@@ -26,7 +26,7 @@ class Car(
     }
 
     override fun compareTo(other: Car): Int {
-        return getCurrentPosition().compareTo(other.getCurrentPosition())
+        return getCurrentPosition() compareTo other.getCurrentPosition()
     }
 
     companion object {
