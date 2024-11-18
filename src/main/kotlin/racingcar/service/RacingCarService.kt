@@ -15,14 +15,14 @@ class RacingCarService {
             numberOfAttempts = input.numberOfAttempts,
         )
     }
+
+    data class Input(
+        val carNames: List<String>,
+        val numberOfAttempts: Int,
+    )
+
+    data class Output(
+        val cars: Cars,
+        val numberOfAttempts: Int,
+    )
 }
-
-data class Input(
-    val carNames: List<String>,
-    val numberOfAttempts: Int,
-)
-
-data class Output(
-    val cars: Cars,
-    val numberOfAttempts: Int,
-)

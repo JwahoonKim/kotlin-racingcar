@@ -1,11 +1,11 @@
 package racingcar.ui
 
 import racingcar.domain.Cars
-import racingcar.service.Output
+import racingcar.service.RacingCarService
 
 object ResultView {
 
-    fun printResult(output: Output) {
+    fun printResult(output: RacingCarService.Output) {
         printStartMessage()
         printStates(output)
         printWinners(output.cars)
@@ -15,7 +15,7 @@ object ResultView {
         println("실행 결과")
     }
 
-    private fun printStates(output: Output) {
+    private fun printStates(output: RacingCarService.Output) {
         for (i in 1..output.numberOfAttempts) {
             printState(cars = output.cars, round = i)
             println()

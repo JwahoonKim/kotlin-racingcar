@@ -1,6 +1,6 @@
 package racingcar.ui
 
-import racingcar.service.Input
+import racingcar.service.RacingCarService
 
 object InputView {
     fun getUserRequest(): Request {
@@ -23,26 +23,14 @@ object InputView {
         val carNames = readln().split(",")
         return carNames
     }
-
-    private fun validateCarNameSize(carNames: List<String>, numberOfCars: Int) {
-        if (carNames.size != numberOfCars) {
-            throw IllegalArgumentException("자동차 대수와 이름의 개수가 일치하지 않습니다.")
-        }
-    }
-
-    private fun getNumberOfCars(): Int {
-        println("자동차 대수는 몇 대 인가요?")
-        val numberOfCars = readln().toInt()
-        return numberOfCars
-    }
 }
 
 data class Request(
     val carNames: List<String>,
     val numberOfAttempts: Int,
 ) {
-    fun toInput(): Input {
-        return Input(
+    fun toInput(): RacingCarService.Input {
+        return RacingCarService.Input(
             carNames = carNames,
             numberOfAttempts = numberOfAttempts,
         )
