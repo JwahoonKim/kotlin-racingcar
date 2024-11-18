@@ -23,10 +23,12 @@ object ResultView {
     }
 
     private fun printState(cars: Cars, round: Int) {
+        val result = StringBuilder()
         cars.forEach { car ->
             val position = "-".repeat(car.getPositionOf(round).value)
-            println("${car.name} : $position")
+            result.append("${car.name} : $position\n")
         }
+        print(result.toString())
     }
 
     private fun printWinners(cars: Cars) {
